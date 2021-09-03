@@ -23,22 +23,26 @@ app.get('/', (req, res) => {
 	res.render('movies', { moviesList: movies, doctitle: 'All the Movies' });
 })
 
-app.get('/godfather', (req, res) => {
-	// find the movie
-	// const godfather = movies.find(function (movie) {
-	// 	return movie.title === 'The Godfather'
-	// })
-
-	const godfather = movies.find(movie => movie.title === 'The Godfather')
-	console.log(godfather);
-	// render a detail view for the movie
-	res.render('movieDetails', { clickedMovie: godfather });
-})
-
 app.get('/about', (req, res) => {
 	// use :  layout: false to skip the base layout for a specific route
 	res.render('about', { doctitle: 'About Page', })
 })
+
+app.get('/:title', (req, res) => {
+	res.send(req.params);
+})
+
+
+
+app.get('/movies/:title', (req, res) => {
+	const clickedTitle = req.params.title;
+	const clickedMovie = movies.find(movie => movie.title === clickedTitle)
+	res.render('movieDetails', { clickedMovie: clickedMovie });
+})
+
+
+// route parameter -> : indicates the variable
+// req.params looks like -> {title: 'value from the url}
 
 // start the server
 app.listen(port, function () {
