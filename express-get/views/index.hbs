@@ -1,0 +1,26 @@
+<h1>This is the index view 🙃</h1>
+<a href="/movies">Check out the movie list</a>
+{{#if user}}
+	<h1>Welcome {{user}}</h1>
+{{else}}
+	<h1>Welcome stranger 👋</h1>
+{{/if}}
+{{#if list}}
+<h2>This is the todo list:</h2>
+<ul>
+	{{#each list}}
+		<li>{{this}}</li>
+	{{/each}}
+</ul>
+{{else}}
+	<h2>No Todos yet </h2>
+{{/if}}
+
+<h2>These are the persons</h2>
+<ul>
+	{{#each persons}}
+		<li>{{name}}</li>
+	{{/each}}
+</ul>
+{{!-- if you want ro resolve you use {{{}}} --}}
+{{{html}}}
