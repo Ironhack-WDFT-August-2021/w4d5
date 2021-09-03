@@ -1,3 +1,10 @@
+<h3>Search the database</h3>
+<form action="/search" method="GET">
+	<label for="title">Enter a title</label>
+	<input type="text" name="q" id="title">
+	<button type="submit">Search 🔎</button>
+</form>
+
 
 {{#each moviesList}}
 	{{!-- '>' <nameOfThePartial> <data> --}}

@@ -23,15 +23,32 @@ app.get('/', (req, res) => {
 	res.render('movies', { moviesList: movies, doctitle: 'All the Movies' });
 })
 
+
+// using a query string
+// app.get('/someroute', (req, res) => {
+// 	// accessing the query string
+// 	res.send(req.query.q);
+// })
+
 app.get('/about', (req, res) => {
 	// use :  layout: false to skip the base layout for a specific route
 	res.render('about', { doctitle: 'About Page', })
 })
 
+
+app.get('/search', (req, res) => {
+	console.log(req.query.q);
+	const searchPhrase = req.query.q;
+	const filteredMovies = movies.filter(movie =>
+		movie.title.toLowerCase().includes(searchPhrase.toLowerCase())
+	)
+	console.log(filteredMovies);
+	res.render('movies', { moviesList: filteredMovies, doctitle: 'Filtered Movies' });
+})
+
 app.get('/:title', (req, res) => {
 	res.send(req.params);
 })
-
 
 
 app.get('/movies/:title', (req, res) => {
